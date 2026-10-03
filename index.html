@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Accelerate-DAQ | NC A&T</title>
+
+    <meta
+        name="description"
+        content="Accelerate-DAQ: Accelerating NC A&T's Defense Research Capacity in Artificial Intelligence, Autonomy, Cyber Resilience, and Quantum Systems."
+    >
+
+    <style>
+        /* =========================================================
+           ACCELERATE-DAQ WEBSITE
+           North Carolina A&T State University
+           ========================================================= */
+
+        :root {
+            --aggie-blue: #003366;
+            --deep-blue: #001b35;
+            --navy: #001326;
+            --electric-blue: #00a9e0;
+            --cyan: #39d7ff;
+            --gold: #f2b134;
+            --gold-light: #ffd66b;
+            --white: #ffffff;
+            --off-white: #f5f8fb;
+            --light-blue: #eaf6fb;
+            --gray: #607080;
+            --dark: #07131f;
+            --border: rgba(0, 169, 224, 0.22);
+
+            --shadow:
+                0 18px 45px rgba(0, 27, 53, 0.14);
+
+            --shadow-dark:
+                0 20px 50px rgba(0, 0, 0, 0.30);
+
+            --radius: 20px;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin-inline: auto;
+        }
+
+        /* =========================================================
+           UTILITY CLASSES
+           ========================================================= */
+
+        .section {
+            padding: 95px 0;
+        }
+
+        .section-dark {
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(0, 169, 224, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #001326,
+                    #002a4e
+                );
+
+            color: white;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+
+            color: var(--electric-blue);
+
+            margin-bottom: 14px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 30px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.08;
+            color: var(--aggie-blue);
+            margin-bottom: 20px;
+            font-weight: 850;
+            letter-spacing: -0.035em;
+        }
+
+        .section-dark .section-title {
+            color: white;
+        }
+
+        .section-intro {
+            max-width: 780px;
+            color: #566879;
+            font-size: 1.06rem;
+            margin-bottom: 45px;
+        }
+
+        .section-dark .section-intro {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .accent {
+            color: var(--electric-blue);
+        }
+
+        .gold {
+            color: var(--gold);
+        }
+
+        /* =========================================================
+           TOP BAR
+           ========================================================= */
+
+        .top-bar {
+            background: #000f1d;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.82rem;
+        }
+
+        .top-bar-inner {
+            min-height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .top-bar strong {
+            color: var(--gold-light);
+        }
+
+        /* =========================================================
+           NAVIGATION
+           ========================================================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(0, 32, 63, 0.97);
+            backdrop-filter: blur(15px);
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .nav {
+            min-height: 78px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-mark {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+
+            display: grid;
+            place-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--electric-blue),
+                    var(--aggie-blue)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.2);
+
+            box-shadow:
+                0 8px 25px rgba(0,169,224,0.28);
+
+            color: white;
+            font-weight: 900;
+            font-size: 0.85rem;
+        }
+
+        .brand-text strong {
+            display: block;
+            color: white;
+            font-size: 1.12rem;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-text span {
+            display: block;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.72rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.88rem;
+            font-weight: 650;
+
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--cyan);
+        }
+
+        .nav-button {
+            padding: 10px 18px;
+            border-radius: 9px;
+
+            background: var(--gold);
+            color: #06182a !important;
+
+            font-weight: 800 !important;
+        }
+
+        .nav-button:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: 0;
+            color: white;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .hero {
+            min-height: 760px;
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 18, 35, 0.98) 0%,
+                    rgba(0, 35, 67, 0.93) 42%,
+                    rgba(0, 38, 70, 0.55) 70%,
+                    rgba(0, 20, 40, 0.70) 100%
+                ),
+                url("A-DAQ-BG.png")
+                center / cover no-repeat;
+
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 150px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0, 15, 29, 0.82)
+                );
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: center;
+
+            padding: 100px 0 120px;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 13px;
+
+            border:
+                1px solid rgba(57, 215, 255, 0.35);
+
+            border-radius: 100px;
+
+            background:
+                rgba(0, 169, 224, 0.12);
+
+            color: var(--cyan);
+
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+
+            margin-bottom: 23px;
+        }
+
+        .hero-tag span {
+            width: 7px;
+            height: 7px;
+            background: var(--gold);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 14px var(--gold);
+        }
+
+        .hero h1 {
+            font-size: clamp(3.3rem, 7vw, 6.6rem);
+            line-height: 0.9;
+            letter-spacing: -0.06em;
+            font-weight: 900;
+            margin-bottom: 27px;
+        }
+
+        .hero h1 .daq {
+            display: block;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    var(--cyan)
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+            line-height: 1.25;
+            font-weight: 700;
+            max-width: 800px;
+
+            margin-bottom: 22px;
+        }
+
+        .hero-description {
+            max-width: 720px;
+
+            color: rgba(255,255,255,0.76);
+            font-size: 1.05rem;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            min-height: 50px;
+            padding: 0 24px;
+
+            border-radius: 10px;
+
+            font-size: 0.91rem;
+            font-weight: 800;
+
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: #06182a;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border:
+                1px solid rgba(255,255,255,0.38);
+
+            color: white;
+
+            background:
+                rgba(255,255,255,0.05);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--cyan);
+            background: rgba(0,169,224,0.13);
+        }
+
+        /* HERO SIDE PANEL */
+
+        .hero-panel {
+            justify-self: end;
+            width: min(100%, 420px);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(2, 29, 53, 0.87),
+                    rgba(0, 57, 94, 0.64)
+                );
+
+            border:
+                1px solid rgba(57,215,255,0.24);
+
+            border-radius: 24px;
+            padding: 28px;
+
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow-dark);
+        }
+
+        .hero-panel-label {
+            font-size: 0.72rem;
+            color: var(--gold);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            margin-bottom: 18px;
+        }
+
+        .hero-focus {
+            display: grid;
+            gap: 12px;
+        }
+
+        .focus-item {
+            padding: 15px 17px;
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.065);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            transition: var(--transition);
+        }
+
+        .focus-item:hover {
+            background:
+                rgba(0,169,224,0.12);
+
+            border-color:
+                rgba(57,215,255,0.28);
+
+            transform: translateX(4px);
+        }
+
+        .focus-number {
+            color: var(--cyan);
+            font-size: 0.72rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        .focus-item strong {
+            font-size: 0.95rem;
+        }
+
+        /* =========================================================
+           RESEARCH STRIP
+           ========================================================= */
+
+        .research-strip {
+            position: relative;
+            z-index: 5;
+            margin-top: -55px;
+        }
+
+        .strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            background: white;
+            border-radius: 18px;
+
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .strip-item {
+            padding: 26px 22px;
+            border-right: 1px solid #e5edf3;
+        }
+
+        .strip-item:last-child {
+            border-right: 0;
+        }
+
+        .strip-item span {
+            display: block;
+            color: var(--electric-blue);
+            font-weight: 900;
+            font-size: 0.74rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .strip-item strong {
+            color: var(--aggie-blue);
+            font-size: 1rem;
+        }
+
+        /* =========================================================
+           ABOUT
+           ========================================================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            min-height: 520px;
+            object-fit: cover;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .image-caption {
+            position: absolute;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(0, 27, 53, 0.88);
+
+            backdrop-filter: blur(10px);
+
+            color: white;
+        }
+
+        .image-caption strong {
+            display: block;
+            color: var(--gold-light);
+            margin-bottom: 3px;
+        }
+
+        .about-copy p {
+            color: #566879;
+            margin-bottom: 20px;
+        }
+
+        .mission-box {
+            border-left: 5px solid var(--gold);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #f1f9fc,
+                    white
+                );
+
+            padding: 22px 24px;
+            margin-top: 28px;
+
+            border-radius: 0 14px 14px 0;
+        }
+
+        .mission-box strong {
+            color: var(--aggie-blue);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* =========================================================
+           CLUSTERS
+           ========================================================= */
+
+        .cluster-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .cluster-card {
+            position: relative;
+            min-height: 480px;
+
+            padding: 32px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    155deg,
+                    rgba(255,255,255,0.10),
+                    rgba(255,255,255,0.035)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+
+            overflow: hidden;
+
+            transition: var(--transition);
+        }
+
+        .cluster-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--electric-blue),
+                    var(--gold)
+                );
+        }
+
+        .cluster-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(57,215,255,0.38);
+
+            box-shadow:
+                0 22px 55px rgba(0,0,0,0.25);
+        }
+
+        .cluster-number {
+            font-size: 4.5rem;
+            line-height: 1;
+            font-weight: 900;
+
+            color:
+                rgba(57,215,255,0.12);
+
+            margin-bottom: 15px;
+        }
+
+        .cluster-card h3 {
+            font-size: 1.45rem;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .cluster-card p {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.94rem;
+            margin-bottom: 22px;
+        }
+
+        .cluster-list {
+            list-style: none;
+        }
+
+        .cluster-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 9px;
+
+            color: rgba(255,255,255,0.82);
+            font-size: 0.88rem;
+        }
+
+        .cluster-list li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           TECHNOLOGY AREAS
+           ========================================================= */
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .tech-card {
+            padding: 28px 25px;
+
+            border: 1px solid #dce8ef;
+            border-radius: 16px;
+
+            background: white;
+
+            transition: var(--transition);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--electric-blue);
+            box-shadow: var(--shadow);
+        }
+
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--aggie-blue),
+                    var(--electric-blue)
+                );
+
+            color: white;
+            font-weight: 900;
+
+            margin-bottom: 18px;
+        }
+
+        .tech-card h3 {
+            color: var(--aggie-blue);
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .tech-card p {
+            color: #607080;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================================
+           RESEARCH CHAMPIONS
+           ========================================================= */
+
+        .champions {
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf8fc,
+                    #ffffff 55%,
+                    #fff8e8
+                );
+        }
+
+        .champion-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .champion-card {
+            background: white;
+            border: 1px solid #dfe9ef;
+            border-radius: 18px;
+            padding: 28px 24px;
+
+            box-shadow:
+                0 12px 35px rgba(0,51,102,0.07);
+        }
+
+        .champion-code {
+            color: var(--electric-blue);
+            font-weight: 900;
+            font-size: 0.78rem;
+            letter-spacing: 0.13em;
+            margin-bottom: 12px;
+        }
+
+        .champion-card h3 {
+            color: var(--aggie-blue);
+            margin-bottom: 10px;
+        }
+
+        .champion-card p {
+            color: #657483;
+            font-size: 0.89rem;
+        }
+
+        /* =========================================================
+           WORKFORCE / PATHWAYS
+           ========================================================= */
+
+        .pathway-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .pathway-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .pathway-item {
+            display: flex;
+            gap: 16px;
+
+            padding: 18px;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border:
+                1px solid rgba(255,255,255,0.10);
+
+            border-radius: 14px;
+        }
+
+        .pathway-check {
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: var(--gold);
+            color: #082039;
+
+            font-weight: 900;
+        }
+
+        .pathway-item strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .pathway-item span {
+            color: rgba(255,255,255,0.68);
+            font-size: 0.87rem;
+        }
+
+        /* =========================================================
+           RESEARCH ECOSYSTEM
+           ========================================================= */
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .ecosystem-step {
+            position: relative;
+            padding: 28px 22px;
+
+            background: #f5f9fc;
+
+            border-radius: 16px;
+            border: 1px solid #dce8ef;
+        }
+
+        .ecosystem-step span {
+            color: var(--gold);
+            font-weight: 900;
+            font-size: 1.6rem;
+        }
+
+        .ecosystem-step h3 {
+            color: var(--aggie-blue);
+            font-size: 1rem;
+            margin: 8px 0;
+        }
+
+        .ecosystem-step p {
+            color: #607080;
+            font-size: 0.86rem;
+        }
+
+        /* =========================================================
+           NEWS / UPDATES PLACEHOLDER
+           ========================================================= */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .news-card {
+            border-radius: 18px;
+            overflow: hidden;
+
+            border: 1px solid #dfe8ee;
+            background: white;
+
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .news-image {
+            height: 190px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #003366,
+                    #00a9e0
+                );
+
+            display: flex;
+            align-items: flex-end;
+
+            padding: 20px;
+
+            color: white;
+        }
+
+        .news-image span {
+            padding: 6px 10px;
+            border-radius: 6px;
+
+            background: rgba(0,0,0,0.30);
+
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+
+        .news-content {
+            padding: 23px;
+        }
+
+        .news-content h3 {
+            color: var(--aggie-blue);
+            margin-bottom: 9px;
+        }
+
+        .news-content p {
+            color: #647585;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================================
+           CTA
+           ========================================================= */
+
+        .cta {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 24, 47, 0.95),
+                    rgba(0, 62, 104, 0.83)
+                ),
+                url("A-DAQ-BG.png")
+                center / cover no-repeat;
+
+            color: white;
+        }
+
+        .cta-inner {
+            text-align: center;
+            max-width: 850px;
+            margin-inline: auto;
+        }
+
+        .cta h2 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.77);
+            max-width: 720px;
+            margin: 0 auto 30px;
+        }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        footer {
+            background: #000e1b;
+            color: white;
+            padding: 65px 0 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+
+            padding-bottom: 45px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.10);
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.62);
+            max-width: 470px;
+            font-size: 0.9rem;
+        }
+
+        .footer-column h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255,255,255,0.67);
+            margin-bottom: 8px;
+            font-size: 0.88rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--cyan);
+        }
+
+        .copyright {
+            padding-top: 24px;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            color: rgba(255,255,255,0.45);
+            font-size: 0.78rem;
+        }
+
+        /* =========================================================
+           REVEAL ANIMATION
+           ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition:
+                opacity 0.65s ease,
+                transform 0.65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .hero-grid,
+            .about-grid,
+            .pathway-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-panel {
+                justify-self: start;
+                width: 100%;
+                max-width: 700px;
+            }
+
+            .cluster-grid,
+            .tech-grid,
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .champion-grid,
+            .ecosystem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .strip-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .strip-item:nth-child(2) {
+                border-right: 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 78px;
+                left: 0;
+                right: 0;
+
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+
+                padding: 25px;
+
+                background: #001f3d;
+
+                border-top:
+                    1px solid rgba(255,255,255,0.08);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .section {
+                padding: 70px 0;
+            }
+
+            .top-bar {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-grid {
+                padding: 80px 0 115px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 17vw, 5rem);
+            }
+
+            .cluster-grid,
+            .tech-grid,
+            .champion-grid,
+            .ecosystem-grid,
+            .news-grid,
+            .strip-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strip-item {
+                border-right: 0;
+                border-bottom: 1px solid #e5edf3;
+            }
+
+            .strip-item:last-child {
+                border-bottom: 0;
+            }
+
+            .cluster-card {
+                min-height: auto;
+            }
+
+            .about-image img {
+                min-height: 380px;
+            }
+
+            .copyright {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         TOP UNIVERSITY BAR
+         ========================================================= -->
+
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+
+            <div>
+                <strong>North Carolina A&T State University</strong>
+                &nbsp; | &nbsp;
+                Research • Innovation • National Impact
+            </div>
+
+            <div>
+                Accelerate-DAQ
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- =========================================================
+         NAVIGATION
+         ========================================================= -->
+
+    <header>
+
+        <nav class="container nav">
+
+            <a class="brand" href="#home">
+
+                <div class="brand-mark">
+                    A•D
+                </div>
+
+                <div class="brand-text">
+                    <strong>Accelerate-DAQ</strong>
+                    <span>Defense AI + Autonomy + Quantum</span>
+                </div>
+
+            </a>
+
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open navigation menu"
+            >
+                ☰
+            </button>
+
+
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#research">Research</a></li>
+
+                <li><a href="#champions">Research Champions</a></li>
+
+                <li><a href="#pathways">Education & Workforce</a></li>
+
+                <li><a href="#updates">Updates</a></li>
+
+                <li>
+                    <a class="nav-button" href="#contact">
+                        Join the Mission
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+             ===================================================== -->
+
+        <section class="hero" id="home">
+
+            <div class="container hero-grid">
+
+                <div>
+
+                    <div class="hero-tag">
+                        <span></span>
+                        NC A&T Research Initiative
+                    </div>
+
+                    <h1>
+                        Accelerate
+                        <span class="daq">DAQ</span>
+                    </h1>
+
+                    <div class="hero-subtitle">
+                        Accelerating NC A&T's Defense Research Capacity
+                        in AI, Autonomy, Cyber Resilience & Quantum Systems
+                    </div>
+
+                    <p class="hero-description">
+                        Building a bold, interdisciplinary research ecosystem
+                        that advances trustworthy artificial intelligence,
+                        cyber defense, autonomous systems, quantum technologies,
+                        and the next generation of research leaders.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#research" class="btn btn-primary">
+                            Explore Our Research →
+                        </a>
+
+                        <a href="#champions" class="btn btn-outline">
+                            Meet the Research Champions
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <aside class="hero-panel">
+
+                    <div class="hero-panel-label">
+                        Revolutionary Research Today
+                    </div>
+
+                    <div class="hero-focus">
+
+                        <div class="focus-item">
+                            <div class="focus-number">01 / AI</div>
+                            <strong>
+                                Trustworthy & Agentic Artificial Intelligence
+                            </strong>
+                        </div>
+
+                        <div class="focus-item">
+                            <div class="focus-number">02 / CYBER</div>
+                            <strong>
+                                Cyber Defense & Cyber Resilience
+                            </strong>
+                        </div>
+
+                        <div class="focus-item">
+                            <div class="focus-number">03 / AUTONOMY</div>
+                            <strong>
+                                Robotics & Autonomous Systems
+                            </strong>
+                        </div>
+
+                        <div class="focus-item">
+                            <div class="focus-number">04 / QUANTUM</div>
+                            <strong>
+                                Quantum Computing & Quantum Technologies
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESEARCH PRIORITY STRIP
+             ===================================================== -->
+
+        <div class="research-strip">
+
+            <div class="container strip-grid">
+
+                <div class="strip-item">
+                    <span>Research</span>
+                    <strong>Applied Artificial Intelligence</strong>
+                </div>
+
+                <div class="strip-item">
+                    <span>Systems</span>
+                    <strong>AI-Enabled Autonomy</strong>
+                </div>
+
+                <div class="strip-item">
+                    <span>Security</span>
+                    <strong>Cyber Resilience</strong>
+                </div>
+
+                <div class="strip-item">
+                    <span>Frontier</span>
+                    <strong>Quantum Systems</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             ABOUT
+             ===================================================== -->
+
+        <section class="section" id="about">
+
+            <div class="container about-grid">
+
+                <div class="about-image reveal">
+
+                    <!--
+                        Upload A-DAQ-MERIC.jpg to the SAME folder
+                        as index.html in your GitHub repository.
+                    -->
+
+                    <img
+                        src="A-DAQ-MERIC.jpg"
+                        alt="NC A&T Engineering Research and Innovation Complex"
+                    >
+
+                    <div class="image-caption">
+
+                        <strong>
+                            North Carolina A&T State University
+                        </strong>
+
+                        Accelerating research capacity,
+                        discovery, and national impact.
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-copy reveal">
+
+                    <div class="eyebrow">
+                        About Accelerate-DAQ
+                    </div>
+
+                    <h2 class="section-title">
+                        Research Built for the
+                        <span class="accent">Future.</span>
+                    </h2>
+
+                    <p>
+                        Accelerate-DAQ is a university-wide research
+                        capacity-building initiative at North Carolina
+                        A&T State University focused on strengthening
+                        research excellence in artificial intelligence,
+                        cyber resilience, autonomous systems, and
+                        quantum technologies.
+                    </p>
+
+                    <p>
+                        The initiative brings together faculty,
+                        postdoctoral scholars, graduate students,
+                        undergraduate researchers, research staff,
+                        centers, laboratories, and interdisciplinary
+                        expertise to create a coordinated ecosystem
+                        for discovery, training, prototype development,
+                        and workforce preparation.
+                    </p>
+
+                    <div class="mission-box">
+
+                        <strong>Our Mission</strong>
+
+                        Build an integrated research ecosystem that
+                        advances transformational technologies,
+                        cultivates emerging Research Champions,
+                        strengthens interdisciplinary collaboration,
+                        and expands NC A&T's capacity for
+                        defense-relevant research.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESEARCH CLUSTERS
+             ===================================================== -->
+
+        <section
+            class="section section-dark"
+            id="research"
+        >
+
+            <div class="container">
+
+                <div class="eyebrow">
+                    Our Research
+                </div>
+
+                <h2 class="section-title">
+                    Three Interconnected
+                    <span class="accent">Research Clusters.</span>
+                </h2>
+
+                <p class="section-intro">
+                    Accelerate-DAQ integrates complementary expertise
+                    across artificial intelligence, cyber defense,
+                    autonomy, robotics, quantum science, materials,
+                    sensing, and intelligent systems.
+                </p>
+
+
+                <div class="cluster-grid">
+
+                    <!-- TACDC -->
+
+                    <article class="cluster-card reveal">
+
+                        <div class="cluster-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Trustworthy AI &
+                            Cyber Defense
+                        </h3>
+
+                        <p>
+                            Advancing secure, explainable,
+                            resilient, and mission-aware artificial
+                            intelligence for complex and contested
+                            environments.
+                        </p>
+
+                        <ul class="cluster-list">
+
+                            <li>Trustworthy & Explainable AI</li>
+
+                            <li>Generative AI & LLMs</li>
+
+                            <li>Agentic AI Assurance</li>
+
+                            <li>Cyber Defense</li>
+
+                            <li>Adversarial Machine Learning</li>
+
+                            <li>Secure Edge Intelligence</li>
+
+                            <li>Human-AI Teaming</li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- AAC -->
+
+                    <article class="cluster-card reveal">
+
+                        <div class="cluster-number">
+                            02
+                        </div>
+
+                        <h3>
+                            AI-Enabled
+                            Autonomy
+                        </h3>
+
+                        <p>
+                            Developing resilient and intelligent
+                            autonomous systems capable of coordinated
+                            decision-making in complex operational
+                            environments.
+                        </p>
+
+                        <ul class="cluster-list">
+
+                            <li>Robotics & Autonomous Systems</li>
+
+                            <li>Multi-Agent Coordination</li>
+
+                            <li>Autonomous Teaming</li>
+
+                            <li>AI-Enabled Perception</li>
+
+                            <li>Mission-Level Reasoning</li>
+
+                            <li>Resilient Navigation</li>
+
+                            <li>Human-Autonomy Teaming</li>
+
+                        </ul>
+
+                    </article>
+
+
+                    <!-- QCC -->
+
+                    <article class="cluster-card reveal">
+
+                        <div class="cluster-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Quantum Computing
+                            & Technologies
+                        </h3>
+
+                        <p>
+                            Connecting quantum-relevant materials,
+                            sensing, intelligent computation,
+                            secure interfaces, and edge technologies.
+                        </p>
+
+                        <ul class="cluster-list">
+
+                            <li>Quantum Computing</li>
+
+                            <li>Quantum Materials</li>
+
+                            <li>Quantum-Enhanced Sensing</li>
+
+                            <li>Hybrid Quantum-Classical Systems</li>
+
+                            <li>AI-Driven Materials Discovery</li>
+
+                            <li>Secure Readout Architectures</li>
+
+                            <li>Fault-Aware Edge Intelligence</li>
+
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TECHNOLOGY FOCUS
+             ===================================================== -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="eyebrow">
+                    Technical Focus
+                </div>
+
+                <h2 class="section-title">
+                    Where Revolutionary
+                    <span class="accent">Research Happens.</span>
+                </h2>
+
+                <p class="section-intro">
+                    From algorithms to autonomous systems and
+                    quantum-enabled technologies, Accelerate-DAQ
+                    connects foundational research with
+                    mission-relevant applications.
+                </p>
+
+
+                <div class="tech-grid">
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            AI
+                        </div>
+
+                        <h3>
+                            Generative & Agentic AI
+                        </h3>
+
+                        <p>
+                            Researching intelligent systems that
+                            reason, collaborate, adapt, and operate
+                            reliably under uncertainty.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            CY
+                        </div>
+
+                        <h3>
+                            CyberAI
+                        </h3>
+
+                        <p>
+                            Combining advanced AI with cyber
+                            defense to strengthen detection,
+                            resilience, decision support,
+                            and secure operations.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            AU
+                        </div>
+
+                        <h3>
+                            Autonomous Systems
+                        </h3>
+
+                        <p>
+                            Advancing intelligent robotics,
+                            distributed autonomy, perception,
+                            navigation, and coordinated systems.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            Q
+                        </div>
+
+                        <h3>
+                            Quantum Technologies
+                        </h3>
+
+                        <p>
+                            Exploring quantum computing,
+                            materials, devices, sensing,
+                            and hybrid quantum-classical
+                            intelligence.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            HI
+                        </div>
+
+                        <h3>
+                            Human + AI Teaming
+                        </h3>
+
+                        <p>
+                            Creating transparent, reliable
+                            systems that strengthen collaboration
+                            between human decision-makers
+                            and intelligent technologies.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tech-card reveal">
+
+                        <div class="tech-icon">
+                            DI
+                        </div>
+
+                        <h3>
+                            Defense Innovation
+                        </h3>
+
+                        <p>
+                            Translating interdisciplinary
+                            research into resilient prototypes,
+                            test platforms, workforce capability,
+                            and future technologies.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESEARCH CHAMPIONS
+             ===================================================== -->
+
+        <section
+            class="section champions"
+            id="champions"
+        >
+
+            <div class="container">
+
+                <div class="eyebrow">
+                    Developing Research Leaders
+                </div>
+
+                <h2 class="section-title">
+                    The Research
+                    <span class="accent">Champion Model.</span>
+                </h2>
+
+                <p class="section-intro">
+                    Accelerate-DAQ develops research leadership
+                    at every stage of the academic research
+                    pipeline through mentoring, collaboration,
+                    technical development, and hands-on discovery.
+                </p>
+
+
+                <div class="champion-grid">
+
+                    <article class="champion-card reveal">
+
+                        <div class="champion-code">
+                            RC-F
+                        </div>
+
+                        <h3>
+                            Faculty
+                        </h3>
+
+                        <p>
+                            Providing technical leadership,
+                            mentorship, proposal development,
+                            research integration, and
+                            interdisciplinary direction.
+                        </p>
+
+                    </article>
+
+
+                    <article class="champion-card reveal">
+
+                        <div class="champion-code">
+                            RC-P
+                        </div>
+
+                        <h3>
+                            Postdoctoral Scholars
+                        </h3>
+
+                        <p>
+                            Advancing cluster-based research,
+                            mentoring junior researchers,
+                            coordinating technical workflows,
+                            and accelerating dissemination.
+                        </p>
+
+                    </article>
+
+
+                    <article class="champion-card reveal">
+
+                        <div class="champion-code">
+                            RC-G
+                        </div>
+
+                        <h3>
+                            Graduate Researchers
+                        </h3>
+
+                        <p>
+                            Conducting dissertation-level
+                            research, publishing discoveries,
+                            developing proposals, and advancing
+                            mission-relevant innovation.
+                        </p>
+
+                    </article>
+
+
+                    <article class="champion-card reveal">
+
+                        <div class="champion-code">
+                            RC-U
+                        </div>
+
+                        <h3>
+                            Undergraduate Researchers
+                        </h3>
+
+                        <p>
+                            Gaining early hands-on experience
+                            in experimentation, computation,
+                            scientific communication,
+                            teamwork, and research discovery.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EDUCATION / WORKFORCE
+             ===================================================== -->
+
+        <section
+            class="section section-dark"
+            id="pathways"
+        >
+
+            <div class="container pathway-grid">
+
+                <div class="reveal">
+
+                    <div class="eyebrow">
+                        Education + Workforce
+                    </div>
+
+                    <h2 class="section-title">
+                        From Research
+                        <span class="gold">
+                            to Impact.
+                        </span>
+                    </h2>
+
+                    <p class="section-intro">
+                        Accelerate-DAQ connects students and
+                        emerging researchers with advanced
+                        technical training, mentorship,
+                        experiential learning, and pathways
+                        into national laboratories, industry,
+                        graduate education, and defense-related
+                        careers.
+                    </p>
+
+                    <a
+                        href="#contact"
+                        class="btn btn-primary"
+                    >
+                        Explore Opportunities →
+                    </a>
+
+                </div>
+
+
+                <div class="pathway-list reveal">
+
+                    <div class="pathway-item">
+
+                        <div class="pathway-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Hands-On Research
+                            </strong>
+
+                            <span>
+                                Computational, experimental,
+                                cyber, autonomy, AI,
+                                and quantum research experiences.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="pathway-item">
+
+                        <div class="pathway-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Mentoring & Professional Development
+                            </strong>
+
+                            <span>
+                                Scientific writing, presentations,
+                                proposal development, research ethics,
+                                and technical communication.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="pathway-item">
+
+                        <div class="pathway-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Internships & Fellowships
+                            </strong>
+
+                            <span>
+                                Preparation for competitive
+                                research internships, fellowships,
+                                and scholarship opportunities.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="pathway-item">
+
+                        <div class="pathway-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                Defense Career Pathways
+                            </strong>
+
+                            <span>
+                                Connecting research preparation
+                                with national laboratories,
+                                government research,
+                                and the Defense Industrial Base.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="pathway-item">
+
+                        <div class="pathway-check">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>
+                                SMART Scholarship Preparation
+                            </strong>
+
+                            <span>
+                                Supporting awareness and preparation
+                                for defense-related education
+                                and workforce opportunities.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESEARCH ECOSYSTEM
+             ===================================================== -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="eyebrow">
+                    Integrated Research Ecosystem
+                </div>
+
+                <h2 class="section-title">
+                    Discovery.
+                    <span class="accent">Development.</span>
+                    Deployment.
+                </h2>
+
+                <p class="section-intro">
+                    Accelerate-DAQ is designed as a connected
+                    research ecosystem where technical discovery,
+                    secure data, prototype development,
+                    workforce preparation, and interdisciplinary
+                    collaboration reinforce one another.
+                </p>
+
+
+                <div class="ecosystem-grid">
+
+                    <article class="ecosystem-step reveal">
+
+                        <span>01</span>
+
+                        <h3>
+                            Discover
+                        </h3>
+
+                        <p>
+                            Advance foundational research
+                            across AI, cyber, autonomy,
+                            sensing, and quantum systems.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ecosystem-step reveal">
+
+                        <span>02</span>
+
+                        <h3>
+                            Integrate
+                        </h3>
+
+                        <p>
+                            Connect expertise, data,
+                            researchers, centers,
+                            laboratories, and research clusters.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ecosystem-step reveal">
+
+                        <span>03</span>
+
+                        <h3>
+                            Validate
+                        </h3>
+
+                        <p>
+                            Develop prototypes,
+                            experimental platforms,
+                            simulations, and
+                            mission-relevant test environments.
+                        </p>
+
+                    </article>
+
+
+                    <article class="ecosystem-step reveal">
+
+                        <span>04</span>
+
+                        <h3>
+                            Impact
+                        </h3>
+
+                        <p>
+                            Strengthen research capacity,
+                            technical talent, collaboration,
+                            innovation, and national impact.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             NEWS / PROJECT UPDATES
+             ===================================================== -->
+
+        <section
+            class="section"
+            id="updates"
+            style="background:#f5f8fb;"
+        >
+
+            <div class="container">
+
+                <div class="eyebrow">
+                    Accelerate-DAQ News
+                </div>
+
+                <h2 class="section-title">
+                    Research.
+                    <span class="accent">People.</span>
+                    Progress.
+                </h2>
+
+                <p class="section-intro">
+                    Highlighting research milestones,
+                    project events, student accomplishments,
+                    partnerships, publications, workshops,
+                    and discoveries across Accelerate-DAQ.
+                </p>
+
+
+                <div class="news-grid">
+
+                    <article class="news-card reveal">
+
+                        <div class="news-image">
+                            <span>
+                                PROJECT NEWS
+                            </span>
+                        </div>
+
+                        <div class="news-content">
+
+                            <h3>
+                                Accelerate-DAQ Research Updates
+                            </h3>
+
+                            <p>
+                                Add project announcements,
+                                research milestones,
+                                awards, and major updates here.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="news-card reveal">
+
+                        <div class="news-image">
+                            <span>
+                                RESEARCH CHAMPIONS
+                            </span>
+                        </div>
+
+                        <div class="news-content">
+
+                            <h3>
+                                Researcher Spotlight
+                            </h3>
+
+                            <p>
+                                Feature graduate students,
+                                undergraduate researchers,
+                                postdoctoral scholars,
+                                and faculty accomplishments.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="news-card reveal">
+
+                        <div class="news-image">
+                            <span>
+                                EVENTS
+                            </span>
+                        </div>
+
+                        <div class="news-content">
+
+                            <h3>
+                                Workshops & Technical Events
+                            </h3>
+
+                            <p>
+                                Share upcoming technical talks,
+                                workshops, symposiums,
+                                research meetings,
+                                and professional-development events.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CALL TO ACTION
+             ===================================================== -->
+
+        <section
+            class="section cta"
+            id="contact"
+        >
+
+            <div class="container cta-inner reveal">
+
+                <div
+                    class="eyebrow"
+                    style="color:var(--cyan);"
+                >
+                    Join Accelerate-DAQ
+                </div>
+
+                <h2>
+                    Help Build the
+                    <span class="gold">
+                        Future of Research.
+                    </span>
+                </h2>
+
+                <p>
+                    Accelerate-DAQ brings together researchers,
+                    students, faculty, collaborators, and
+                    technical leaders to advance revolutionary
+                    research in AI, cyber defense, autonomy,
+                    robotics, and quantum technologies.
+                </p>
+
+                <div
+                    class="hero-buttons"
+                    style="justify-content:center;"
+                >
+
+                    <a
+                        href="mailto:btgovan@ncat.edu"
+                        class="btn btn-primary"
+                    >
+                        Contact Accelerate-DAQ
+                    </a>
+
+                    <a
+                        href="#research"
+                        class="btn btn-outline"
+                    >
+                        Explore Research Areas
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-brand">
+
+                    <h3>
+                        Accelerate-DAQ
+                    </h3>
+
+                    <p>
+                        Accelerating North Carolina A&T State
+                        University's research capacity in
+                        artificial intelligence, autonomy,
+                        cyber resilience, and quantum systems.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Explore
+                    </h4>
+
+                    <a href="#about">
+                        About
+                    </a>
+
+                    <a href="#research">
+                        Research Clusters
+                    </a>
+
+                    <a href="#champions">
+                        Research Champions
+                    </a>
+
+                    <a href="#pathways">
+                        Education & Workforce
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h4>
+                        Research Areas
+                    </h4>
+
+                    <a href="#research">
+                        Trustworthy AI
+                    </a>
+
+                    <a href="#research">
+                        Cyber Defense
+                    </a>
+
+                    <a href="#research">
+                        Autonomous Systems
+                    </a>
+
+                    <a href="#research">
+                        Quantum Technologies
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+
+                <div>
+                    © <span id="year"></span>
+                    North Carolina A&T State University |
+                    Accelerate-DAQ
+                </div>
+
+                <div>
+                    Defense AI + Autonomy + Quantum
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script>
+
+        /*
+         * Mobile Navigation
+         */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+
+        menuButton.addEventListener("click", () => {
+
+            navLinks.classList.toggle("open");
+
+        });
+
+
+        /*
+         * Close mobile menu when a navigation link is selected
+         */
+
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    navLinks.classList.remove("open");
+
+                });
+
+            });
+
+
+        /*
+         * Scroll Reveal
+         */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const observer =
+            new IntersectionObserver(
+
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+        /*
+         * Automatic copyright year
+         */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+
+</body>
+</html>
